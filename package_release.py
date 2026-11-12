@@ -59,7 +59,7 @@ def main():
                       'package_bytes': zip_path.stat().st_size,
                       'exe_bytes': (package / '清单取件.exe').stat().st_size,
                       'source': str(source_zip), 'source_bytes': source_zip.stat().st_size},
-                     ensure_ascii=False))
+                     ensure_ascii=True))
 
 
 if __name__ == '__main__':
