@@ -6,7 +6,7 @@ import core
 
 
 def run(resource_root):
-    resources = Path(resource_root)
+    resources = Path(resource_root).resolve()
     for relative in ('assets/list-pick.png', 'assets/list-pick.ico', '演示资料/清单.txt'):
         if not (resources / relative).is_file():
             raise RuntimeError('打包资源缺失：' + relative)
