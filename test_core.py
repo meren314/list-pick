@@ -14,7 +14,7 @@ import core
 class CoreTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.base = Path(self.temp.name)
+        self.base = Path(self.temp.name).resolve()
         self.source = self.base / "source"
         self.parent = self.base / "exports"
         self.source.mkdir()

@@ -22,7 +22,7 @@ def descendants(widget):
 class UIPolishTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="list-pick-ui-polish-")
-        self.base = Path(self.temp.name)
+        self.base = Path(self.temp.name).resolve()
         self.source = self.base / "source"
         self.exports = self.base / "exports"
         self.source.mkdir()

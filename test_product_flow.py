@@ -15,7 +15,7 @@ import core
 class ProductFlowTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="list-pick-acceptance-")
-        self.base = Path(self.temp.name)
+        self.base = Path(self.temp.name).resolve()
         self.source = self.base / "source"
         self.output_parent = self.base / "output"
         self.source.mkdir()
