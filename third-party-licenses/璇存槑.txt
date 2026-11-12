@@ -1,0 +1,10 @@
+清单取件的程序源码由本次项目编写。
+Windows单文件程序捆绑运行所需的Python、Tcl/Tk与regex，并使用PyInstaller引导器。
+
+1. Python 3.12.10：Python-LICENSE.txt
+2. Tcl 8.6.15：Tcl-LICENSE.txt，来源为tcltk/tcl官方core-8-6-15标签。
+3. Tk 8.6：Tk-LICENSE.txt，来自本机Python捆绑版本。
+4. PyInstaller 6.22.3引导器及运行时钩子：PyInstaller-COPYING.txt，包含引导器例外与相关许可文本。
+5. regex 2026.11.9：regex-LICENSE.txt，包含 Apache-2.0 与 CNRI-Python 许可文本。
+
+这些许可说明须随包含相关组件的交付包保留。它们不表示上游项目为本产品提供担保或背书。

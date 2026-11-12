@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="清单取件应用图标">
+  <rect x="8" y="8" width="240" height="240" rx="55" fill="#235dd7"/>
+  <rect x="67" y="51" width="132" height="164" rx="18" fill="#18449a"/>
+  <rect x="51" y="39" width="132" height="164" rx="18" fill="#ffffff"/>
+  <rect x="74" y="72" width="12" height="12" rx="3" fill="#235dd7"/>
+  <rect x="98" y="74" width="60" height="8" rx="4" fill="#b4c6e8"/>
+  <rect x="74" y="103" width="12" height="12" rx="3" fill="#235dd7"/>
+  <rect x="98" y="105" width="60" height="8" rx="4" fill="#b4c6e8"/>
+  <rect x="74" y="134" width="12" height="12" rx="3" fill="#235dd7"/>
+  <rect x="98" y="136" width="40" height="8" rx="4" fill="#b4c6e8"/>
+  <circle cx="178" cy="177" r="45" fill="#235dd7"/>
+  <circle cx="178" cy="177" r="35" fill="#a7f0da"/>
+  <path d="m160 177 12 12 25-27" fill="none" stroke="#124c50" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

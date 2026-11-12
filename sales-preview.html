@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>清单取件 · 产品功能演示封面</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #173353;
+      --blue: #245dc3;
+      --muted: #63758a;
+      --line: #dce4ee;
+      --orange: #ac601e;
+      --orange-soft: #fff3e8;
+      --green: #26735d;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      width: 1200px;
+      min-width: 1200px;
+      height: 1200px;
+      background: #f4f6f9;
+    }
+
+    body {
+      color: var(--navy);
+      font-family: "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .poster {
+      width: 1200px;
+      height: 1200px;
+      padding: 52px 64px 42px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: #f4f6f9;
+    }
+
+    .brand-line {
+      height: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .brand-mark {
+      width: 8px;
+      height: 29px;
+      background: var(--blue);
+      border-radius: 2px;
+    }
+
+    .demo-label {
+      padding: 8px 16px;
+      border: 1px solid #ccd7e5;
+      border-radius: 6px;
+      color: #5b7088;
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 500;
+      background: #f9fafc;
+    }
+
+    .hero {
+      flex-shrink: 0;
+      margin: 27px 0 28px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 82px;
+      line-height: 1.12;
+      letter-spacing: -2px;
+      font-weight: 800;
+    }
+
+    .promise {
+      margin: 8px 0 0;
+      font-size: 43px;
+      line-height: 1.35;
+      font-weight: 600;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: 26px;
+      line-height: 38px;
+      font-weight: 400;
+    }
+
+    .demo-card {
+      height: 490px;
+      flex-shrink: 0;
+      padding: 22px 26px 20px;
+      border: 1px solid #d4dfea;
+      border-radius: 13px;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(28, 51, 79, .035);
+    }
+
+    .card-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 33px;
+    }
+
+    .card-heading h2 {
+      margin: 0;
+      font-size: 25px;
+      font-weight: 700;
+      line-height: 33px;
+    }
+
+    .card-note {
+      font-size: 20px;
+      line-height: 30px;
+      color: var(--muted);
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin: 14px 0 16px;
+    }
+
+    .stat {
+      display: flex;
+      height: 54px;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border-radius: 6px;
+      background: #f1f5fa;
+    }
+
+    .stat strong { font-size: 31px; line-height: 40px; font-weight: 700; }
+    .stat span { font-size: 20px; line-height: 30px; color: #52667e; }
+    .stat.selected { background: #eaf0fc; color: var(--blue); }
+    .stat.attention { background: var(--orange-soft); color: var(--orange); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 22px;
+      line-height: 30px;
+    }
+
+    col.line { width: 64px; }
+    col.name { width: 342px; }
+    col.state { width: 208px; }
+
+    thead tr { height: 34px; }
+    th {
+      padding: 0 12px 6px;
+      text-align: left;
+      font-size: 18px;
+      font-weight: 500;
+      color: #718297;
+      border-bottom: 1px solid var(--line);
+    }
+
+    tbody tr { height: 48px; }
+    td { padding: 5px 12px; border-bottom: 1px solid #edf1f5; vertical-align: middle; }
+    tbody tr:last-child td { border-bottom: 0; }
+    td.number { color: #8593a4; font-size: 18px; font-variant-numeric: tabular-nums; }
+    td.file { font-weight: 500; }
+    td.action { color: #63758a; font-size: 20px; }
+    .status {
+      display: inline-block;
+      min-width: 112px;
+      padding: 2px 12px;
+      border-radius: 5px;
+      font-size: 19px;
+      line-height: 29px;
+      text-align: center;
+      font-weight: 500;
+    }
+    .status.unique { color: var(--green); background: #eef7f3; }
+    .status.missing, .status.ambiguous { color: var(--orange); background: var(--orange-soft); }
+    .status.duplicate { color: #66768a; background: #f0f3f7; }
+    tr.needs-review { background: #fffcf8; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 0;
+      margin: 29px 0 0;
+      list-style: none;
+      flex-shrink: 0;
+    }
+
+    .steps li {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      column-gap: 12px;
+      align-items: start;
+      min-height: 109px;
+      padding: 17px 15px;
+      background: #edf2f8;
+      border-radius: 8px;
+    }
+
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid #bdcde0;
+      border-radius: 50%;
+      color: var(--blue);
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .step-text h3 { margin: 0; font-size: 25px; line-height: 36px; font-weight: 700; }
+    .step-text p { margin: 5px 0 0; color: var(--muted); font-size: 19px; line-height: 28px; white-space: nowrap; }
+
+    footer {
+      margin-top: auto;
+      padding-top: 21px;
+      border-top: 1px solid #d6e0eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      flex-shrink: 0;
+      font-size: 25px;
+      line-height: 36px;
+      font-weight: 500;
+      color: #2f4a6b;
+    }
+
+    .divider { width: 1px; height: 21px; background: #bdccdc; }
+
+    @media print {
+      @page { size: 1200px 1200px; margin: 0; }
+      body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .demo-card { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="poster" aria-label="清单取件产品功能演示封面，所有文件为虚构样例">
+    <div class="brand-line">
+      <div class="brand"><img src="assets/list-pick.svg" width="48" height="48" alt="">清单取件</div>
+      <div class="demo-label">功能演示 · 虚构样例</div>
+    </div>
+
+    <header class="hero">
+      <h1>按清单找文件</h1>
+      <p class="promise">找到、缺失、重名，一次核对</p>
+      <p class="subtitle">Windows 离线工具 · 文件名 / 正则 / 后缀匹配</p>
+    </header>
+
+    <section class="demo-card" aria-label="虚构清单的分类结果示意，并非应用截图">
+      <div class="card-heading">
+        <h2>示例核对结果</h2>
+        <span class="card-note">多候选由你确认后复制</span>
+      </div>
+      <div class="summary" aria-label="6项清单，3项唯一匹配，1项缺失，1项多份匹配，1项重复">
+        <div class="stat"><strong>6</strong><span>项清单</span></div>
+        <div class="stat selected"><strong>3</strong><span>唯一</span></div>
+        <div class="stat attention"><strong>1</strong><span>缺失</span></div>
+        <div class="stat attention"><strong>1</strong><span>多份</span></div>
+        <div class="stat"><strong>1</strong><span>重复</span></div>
+      </div>
+      <table aria-label="演示清单6行核对结果">
+        <colgroup><col class="line"><col class="name"><col class="state"><col></colgroup>
+        <thead><tr><th scope="col">行</th><th scope="col">清单文件名</th><th scope="col">匹配情况</th><th scope="col">处理说明</th></tr></thead>
+        <tbody>
+          <tr><td class="number">01</td><td class="file">001-报价.txt</td><td><span class="status unique">唯一匹配</span></td><td class="action">可复制</td></tr>
+          <tr><td class="number">02</td><td class="file">002-合同.txt</td><td><span class="status unique">唯一匹配</span></td><td class="action">可复制</td></tr>
+          <tr class="needs-review"><td class="number">03</td><td class="file">003-验收.txt</td><td><span class="status ambiguous">多份匹配</span></td><td class="action">2 个候选，需核对</td></tr>
+          <tr class="needs-review"><td class="number">04</td><td class="file">004-付款.txt</td><td><span class="status missing">未找到</span></td><td class="action">本次范围内未找到</td></tr>
+          <tr><td class="number">05</td><td class="file">0007-编号.txt</td><td><span class="status unique">唯一匹配</span></td><td class="action">可复制</td></tr>
+          <tr><td class="number">06</td><td class="file">001-报价.txt</td><td><span class="status duplicate">清单重复</span></td><td class="action">与第 1 行重复</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <ol class="steps" aria-label="三个使用步骤">
+      <li><span class="step-number" aria-hidden="true">1</span><div class="step-text"><h3>填写规则</h3><p>粘贴清单或填写匹配规则</p></div></li>
+      <li><span class="step-number" aria-hidden="true">2</span><div class="step-text"><h3>扫描文件夹</h3><p>查看唯一、缺失和重名</p></div></li>
+      <li><span class="step-number" aria-hidden="true">3</span><div class="step-text"><h3>复制并导出</h3><p>输出文件与核对报告</p></div></li>
+    </ol>
+
+    <footer aria-label="先预览再复制，原文件不变，CSV核对报告">
+      <span>先预览再复制</span><span class="divider" aria-hidden="true"></span>
+      <span>原文件不变</span><span class="divider" aria-hidden="true"></span>
+      <span>CSV核对报告</span>
+    </footer>
+  </main>
+</body>
+</html>

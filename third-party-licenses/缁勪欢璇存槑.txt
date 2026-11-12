@@ -1,0 +1,8 @@
+清单取件运行及打包组件
+
+1. Python 3.12 及其随附组件：参见 Python 许可文本。
+2. Tcl/Tk：参见 Tcl/Tk 许可文本。
+3. PyInstaller 6.22.3 引导程序：参见 PyInstaller 许可及引导程序例外。
+4. regex 2026.11.9：Apache-2.0 AND CNRI-Python，完整文本见 regex-LICENSE.txt。
+
+图标为本项目原创的几何图形，源文件保存在源码包 assets 目录。
