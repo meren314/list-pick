@@ -1,0 +1,46 @@
+清单取件 0.2.1 源码
+
+1. 运行
+   Windows、Python 3.12（含 Tkinter）。先安装 requirements-build.txt，再运行 python app.py。
+   运行时依赖 regex，用于带超时的正则匹配；图形界面使用标准库 Tkinter。
+
+2. 验证
+   python -m unittest discover -p "test_*.py" -v
+   python validate_demo.py
+   python app.py --smoke-test
+   真正的符号链接测试在无相应权限时会跳过；模拟重解析点测试仍执行。
+
+3. 构建
+   在源码目录运行 PowerShell 脚本 .\build.ps1。
+   脚本在源码目录创建 .venv，安装依赖、执行测试，生成 dist\清单取件.exe。
+   使用 PyInstaller 打包图标、演示资料及必要运行库，不需要管理员权限。
+   python package_release.py 默认生成 release 目录，--output-dir 可指定输出目录。
+   同名版本目录已经存在时停止，不递归清理已有文件。
+
+4. 文件分工
+   app.py：界面、后台任务队列、模式示例、候选选择、输入失效保护。
+   core.py：匹配、后缀筛选、受限时长的正则执行、复制、去重及报告。
+   test_core.py：核心边界测试。
+   test_product_flow.py：独立的多规则、筛选、选择、复制与报告验收。
+   list_io.py / test_list_io.py：常见 Windows 文本编码与错误文件类型处理。
+   test_ui_polish.py：候选搜索与勾选、键盘导航及小窗口的独立验收。
+   validate_demo.py：虚构演示数据的独立验收，比较原文件与输出 SHA256。
+   validate_scale.py：可选的 10,000 个虚构文件、10 条规则扫描计时，不代表跨电脑性能保证。
+   smoke_check.py：验证打包资源、regex 运行库、两种新模式及虚构文件复制；由 --smoke-test 触发。
+   assets：原创 SVG 图标及 PNG、ICO。exe 使用 ICO，窗口使用 PNG。
+   build_assets.py：可选图标再生成脚本，需要 Pillow；正常构建直接使用已提供的资产。
+   third-party-licenses：Python、Tcl/Tk、PyInstaller、regex 等运行组件许可。
+
+5. 设计约定
+   主流程是填写规则、扫描预览、确认复制。四种匹配方式使用动态示例解释含义。
+   精确名称的多候选只能选一份；正则及后缀允许显式多选。相同路径的重叠匹配只复制一次。
+   扫描筛选影响结果范围；结果搜索只影响显示。导出以完整的已确认计划为准。
+   颜色辅助区分状态，同时始终显示中文标签；不依赖颜色单独传达失败或成功。
+   蓝色用于主要操作，深蓝用于层级，绿色用于成功，橙色用于待核对。
+   图标用清单与勾选表达“先核对再取件”，没有外部图片或字体依赖。
+   精确/后缀模式的一对一大小写键不把 ß 展开为 ss，不声称复刻 Windows 全部 Unicode 等价表；正则语义仍由正则组件处理。
+
+6. 验证边界
+   自动化测试不等同于跨电脑兼容性验收；本版本仍标注试验版。
+   软件本身不含联网、账号、支付、授权码、订单或自动发货逻辑。
+   制作和验证软件不代表已有订单或收入，销售交付需另行完成。
